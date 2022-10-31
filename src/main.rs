@@ -240,12 +240,11 @@ fn main() {
             let mut output = 64;
             for y in 0..8{
                 for x in 0..8{
-                    if k[y][x]{
+                    if k(y,x){
                         output -= 1
                     } else {
                         for (a, b) in attacking_squares {
-                            let (attacking_x, attacking_y) = (x + a, y + b);
-                            if attacking_x >= 0 && attacking_x < 8 && attacking_y >= 0 && attacking_y < 8 && k[attacking_y][attacking_x] {
+                            if x+a >= 0 && x+a < 8 && y+b >= 0 && y+b < 8 && k(y+b,x+a) {
                                 output -= 1;
                                 break;
                             }
