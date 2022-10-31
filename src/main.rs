@@ -231,18 +231,18 @@ fn main() {
 
         let exploded_board: Vec<_> = case
             .iter()
-            .map(|row| row.split("").filter(|item| item.len() > 0).collect::<Vec<_>>())
+            .map(|row| row.chars().collect::<Vec<_>>())
             .collect();
 
         let mut output = 64;
         for y in 0..8i8 {
             for x in 0..8i8 {
-                if exploded_board[y as usize][x as usize] == "N" {
+                if exploded_board[y as usize][x as usize] == 'N' {
                     output -= 1
                 } else {
                     for (a, b) in attacking_squares {
                         let (attacking_x, attacking_y):(i8, i8) = (x + a, y + b);
-                        if attacking_x >= 0 && attacking_x <= 7 && attacking_y >= 0 && attacking_y <= 7 && exploded_board[attacking_y as usize][attacking_x as usize] == "N" {
+                        if attacking_x >= 0 && attacking_x <= 7 && attacking_y >= 0 && attacking_y <= 7 && exploded_board[attacking_y as usize][attacking_x as usize] == 'N' {
                             output -= 1;
                             break;
                         }
