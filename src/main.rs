@@ -234,29 +234,17 @@ fn main() {
             .map(|row| row.chars().collect::<Vec<_>>())
             .collect();
 
-        let vector_based_output = |v: Vec<Vec<char>>| {
-            let k=|a,b|v[a as usize][b as usize]=='N';
-            let z = [(-1,-2),(1,-2),(-2,-1),(2,-1),(-2,1),(2,1),(-1,2),(1,2)];
-            let mut o = 64;
-            for y in 0..8{
-                for x in 0..8{
-                    if k(y,x){
-                        o -= 1
-                    } else {
-                        for (a, b) in z {
-                            if x+a >= 0 && x+a < 8 && y+b >= 0 && y+b < 8 && k(y+b,x+a) {
-                                o -= 1;
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
+        let vector_based_output =
 
-            o
-        };
+|v:Vec<Vec<char>>|{let k=|a,b|v[a as usize][b as usize]=='N';let z=[(-1,-2),(1,-2),(-2,-1),(2,-1),(-2,1),(2,1),(-1,2),(1,2)];let mut o=64;for y in 0..8{for x in 0..8{if k(y,x){o-=1}else{for(a,b)in z {if x+a>=0&&x+a<8&&y+b>=0&&y+b<8&&k(y+b,x+a){o-=1;break;}}}}}o}
 
-        let bitwise_output = |i:u64|(i|(i&71209857637481724)<<6|(i&280371153272574)<<15|(i&140185576636287)<<17|(i&17802464409370431)<<10|(i&4557430888798830336)>>6|(i&9187201950435704832)>>15|(i&18374403900871409664)>>17|(i&18229723555195321344)>>10).count_zeros();
+        ;
+
+        let bitwise_output =
+
+|i:u64|(i|(i&71209857637481724)<<6|(i&280371153272574)<<15|(i&140185576636287)<<17|(i&17802464409370431)<<10|(i&4557430888798830336)>>6|(i&9187201950435704832)>>15|(i&18374403900871409664)>>17|(i&18229723555195321344)>>10).count_zeros()
+
+        ;
 
         let bitwise = bitwise_output(input_integer);
         let output = vector_based_output(exploded_board);
