@@ -212,13 +212,13 @@ fn main() {
             "N*******"
         ],
     ];
-    
+
     // Alternative version taking input as an unsigned 64 bit integer
     // input u64 : output as before
     for case in input_cases {
         let mut input_integer = 0;
         let mut bit_value: u64 = 1 << 63;
-        
+
         for row in case {
             let squares = row.chars();
             for square in squares {
@@ -228,12 +228,12 @@ fn main() {
                 bit_value >>= 1;
             }
         }
-        
+
         let exploded_board: Vec<_> = case
             .iter()
             .map(|row| row.split("").filter(|item| item.len() > 0).collect::<Vec<_>>())
             .collect();
-        
+
         let mut output = 64;
         for y in 0..8i8 {
             for x in 0..8i8 {
