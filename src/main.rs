@@ -1,5 +1,5 @@
 fn main() {
-    let attacking_squares:[(i8, i8); 8] = [(-1, -2), (1, -2), (-2, -1), (2, -1), (-2, 1), (2, 1), (-1, 2), (1, 2)];
+
     let input_cases = [
         [
             "********",
@@ -235,6 +235,7 @@ fn main() {
             .collect();
 
         let vector_based_output = |exploded_board: Vec<Vec<char>>| {
+            let attacking_squares:[(i8, i8); 8] = [(-1, -2), (1, -2), (-2, -1), (2, -1), (-2, 1), (2, 1), (-1, 2), (1, 2)];
             let mut output = 64;
             for y in 0..8i8 {
                 for x in 0..8i8 {
