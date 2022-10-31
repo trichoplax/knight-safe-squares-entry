@@ -235,16 +235,17 @@ fn main() {
             .collect();
 
         let vector_based_output = |exploded_board: Vec<Vec<char>>| {
-            let attacking_squares = [(-1, -2), (1, -2), (-2, -1), (2, -1), (-2, 1), (2, 1), (-1, 2), (1, 2)];
+            let k=|a,b|exploded_board[a as usize][b as usize]=='N';
+            let attacking_squares = [(-1,-2),(1,-2),(-2,-1),(2,-1),(-2,1),(2,1),(-1,2),(1,2)];
             let mut output = 64;
-            for y in 0..8 {
-                for x in 0..8 {
-                    if exploded_board[y as usize][x as usize] == 'N' {
+            for y in 0..8{
+                for x in 0..8{
+                    if k[y][x]{
                         output -= 1
                     } else {
                         for (a, b) in attacking_squares {
                             let (attacking_x, attacking_y) = (x + a, y + b);
-                            if attacking_x >= 0 && attacking_x < 8 && attacking_y >= 0 && attacking_y < 8 && exploded_board[attacking_y as usize][attacking_x as usize] == 'N' {
+                            if attacking_x >= 0 && attacking_x < 8 && attacking_y >= 0 && attacking_y < 8 && k[attacking_y][attacking_x] {
                                 output -= 1;
                                 break;
                             }
