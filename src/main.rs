@@ -244,7 +244,7 @@ fn main() {
                     } else {
                         for (a, b) in attacking_squares {
                             let (attacking_x, attacking_y):(i8, i8) = (x + a, y + b);
-                            if attacking_x >= 0 && attacking_x <= 7 && attacking_y >= 0 && attacking_y <= 7 && exploded_board[attacking_y as usize][attacking_x as usize] == 'N' {
+                            if attacking_x >= 0 && attacking_x < 8 && attacking_y >= 0 && attacking_y < 8 && exploded_board[attacking_y as usize][attacking_x as usize] == 'N' {
                                 output -= 1;
                                 break;
                             }
