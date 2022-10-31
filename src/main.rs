@@ -253,36 +253,28 @@ fn main() {
 
         let bitwise_output = |i: u64| {
             // Moves in direction (2, -1)
-            let pieces_to_move = i & 71209857637481724;
-            let moved1 = pieces_to_move << 6;
+            let moved1 = (i & 71209857637481724) << 6;
 
             // Moves in direction (1, -2)
-            let pieces_to_move = i & 280371153272574;
-            let moved2 = pieces_to_move << 15;
+            let moved2 = (i & 280371153272574) << 15;
 
             // Moves in direction (-1, -2)
-            let pieces_to_move = i & 140185576636287;
-            let moved3 = pieces_to_move << 17;
+            let moved3 = (i & 140185576636287) << 17;
 
             // Moves in direction (-2, -1)
-            let pieces_to_move = i & 17802464409370431;
-            let moved4 = pieces_to_move << 10;
+            let moved4 = (i & 17802464409370431) << 10;
 
             // Moves in direction (-2, 1)
-            let pieces_to_move = i & 4557430888798830336;
-            let moved5 = pieces_to_move >> 6;
+            let moved5 = (i & 4557430888798830336) >> 6;
 
             // Moves in direction (-1, 2)
-            let pieces_to_move = i & 9187201950435704832;
-            let moved6 = pieces_to_move >> 15;
+            let moved6 = (i & 9187201950435704832) >> 15;
 
             // Moves in direction (1, 2)
-            let pieces_to_move = i & 18374403900871409664;
-            let moved7 = pieces_to_move >> 17;
+            let moved7 = (i & 18374403900871409664) >> 17;
 
             // Moves in direction (2, 1)
-            let pieces_to_move = i & 18229723555195321344;
-            let moved8 = pieces_to_move >> 10;
+            let moved8 = (i & 18229723555195321344) >> 10;
 
             (i | moved1 | moved2 | moved3 | moved4 | moved5 | moved6 | moved7 | moved8).count_zeros()
         };
