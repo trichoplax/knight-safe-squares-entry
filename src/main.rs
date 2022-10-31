@@ -234,26 +234,31 @@ fn main() {
             .map(|row| row.chars().collect::<Vec<_>>())
             .collect();
 
-        let mut output = 64;
-        for y in 0..8i8 {
-            for x in 0..8i8 {
-                if exploded_board[y as usize][x as usize] == 'N' {
-                    output -= 1
-                } else {
-                    for (a, b) in attacking_squares {
-                        let (attacking_x, attacking_y):(i8, i8) = (x + a, y + b);
-                        if attacking_x >= 0 && attacking_x <= 7 && attacking_y >= 0 && attacking_y <= 7 && exploded_board[attacking_y as usize][attacking_x as usize] == 'N' {
-                            output -= 1;
-                            break;
+        let vector_based_output = |exploded_board: Vec<Vec<char>>| {
+            let mut output = 64;
+            for y in 0..8i8 {
+                for x in 0..8i8 {
+                    if exploded_board[y as usize][x as usize] == 'N' {
+                        output -= 1
+                    } else {
+                        for (a, b) in attacking_squares {
+                            let (attacking_x, attacking_y):(i8, i8) = (x + a, y + b);
+                            if attacking_x >= 0 && attacking_x <= 7 && attacking_y >= 0 && attacking_y <= 7 && exploded_board[attacking_y as usize][attacking_x as usize] == 'N' {
+                                output -= 1;
+                                break;
+                            }
                         }
                     }
                 }
             }
-        }
+
+            output
+        };
 
         let bitwise_output = |i:u64|(i|(i&71209857637481724)<<6|(i&280371153272574)<<15|(i&140185576636287)<<17|(i&17802464409370431)<<10|(i&4557430888798830336)>>6|(i&9187201950435704832)>>15|(i&18374403900871409664)>>17|(i&18229723555195321344)>>10).count_zeros();
 
         let bitwise = bitwise_output(input_integer);
+        let output = vector_based_output(exploded_board);
         let inverse_input_integer = u64::MAX - input_integer;
 
         assert!(bitwise == output, "True output: {}\nGolfed output: {}\n\n", output, bitwise);
