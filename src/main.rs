@@ -252,31 +252,7 @@ fn main() {
         }
 
         let bitwise_output = |i: u64| {
-            // Moves in direction (2, -1)
-            let moved1 = (i & 71209857637481724) << 6;
-
-            // Moves in direction (1, -2)
-            let moved2 = (i & 280371153272574) << 15;
-
-            // Moves in direction (-1, -2)
-            let moved3 = (i & 140185576636287) << 17;
-
-            // Moves in direction (-2, -1)
-            let moved4 = (i & 17802464409370431) << 10;
-
-            // Moves in direction (-2, 1)
-            let moved5 = (i & 4557430888798830336) >> 6;
-
-            // Moves in direction (-1, 2)
-            let moved6 = (i & 9187201950435704832) >> 15;
-
-            // Moves in direction (1, 2)
-            let moved7 = (i & 18374403900871409664) >> 17;
-
-            // Moves in direction (2, 1)
-            let moved8 = (i & 18229723555195321344) >> 10;
-
-            (i | moved1 | moved2 | moved3 | moved4 | moved5 | moved6 | moved7 | moved8).count_zeros()
+            (i | (i & 71209857637481724) << 6 | (i & 280371153272574) << 15 | (i & 140185576636287) << 17 | (i & 17802464409370431) << 10 | (i & 4557430888798830336) >> 6 | (i & 9187201950435704832) >> 15 | (i & 18374403900871409664) >> 17 | (i & 18229723555195321344) >> 10).count_zeros()
         };
 
         let bitwise = bitwise_output(input_integer);
