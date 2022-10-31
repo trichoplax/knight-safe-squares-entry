@@ -251,7 +251,7 @@ fn main() {
             }
         }
 
-        let bitwise_output = |input_integer: u64| {
+        let bitwise_output = |i: u64| {
             // Moves in direction (2, -1)
             let mask = u64::from_str_radix("\
                 00000000\
@@ -263,7 +263,7 @@ fn main() {
                 11111100\
                 11111100\
             ", 2).unwrap();
-            let pieces_to_move = input_integer & mask;
+            let pieces_to_move = i & mask;
             let moved1 = pieces_to_move << 6;
 
             // Moves in direction (1, -2)
@@ -277,7 +277,7 @@ fn main() {
                 11111110\
                 11111110\
             ", 2).unwrap();
-            let pieces_to_move = input_integer & mask;
+            let pieces_to_move = i & mask;
             let moved2 = pieces_to_move << 15;
 
             // Moves in direction (-1, -2)
@@ -291,7 +291,7 @@ fn main() {
                 01111111\
                 01111111\
             ", 2).unwrap();
-            let pieces_to_move = input_integer & mask;
+            let pieces_to_move = i & mask;
             let moved3 = pieces_to_move << 17;
 
             // Moves in direction (-2, -1)
@@ -305,7 +305,7 @@ fn main() {
                 00111111\
                 00111111\
             ", 2).unwrap();
-            let pieces_to_move = input_integer & mask;
+            let pieces_to_move = i & mask;
             let moved4 = pieces_to_move << 10;
 
             // Moves in direction (-2, 1)
@@ -319,7 +319,7 @@ fn main() {
                 00111111\
                 00000000\
             ", 2).unwrap();
-            let pieces_to_move = input_integer & mask;
+            let pieces_to_move = i & mask;
             let moved5 = pieces_to_move >> 6;
 
             // Moves in direction (-1, 2)
@@ -333,7 +333,7 @@ fn main() {
                 00000000\
                 00000000\
             ", 2).unwrap();
-            let pieces_to_move = input_integer & mask;
+            let pieces_to_move = i & mask;
             let moved6 = pieces_to_move >> 15;
 
             // Moves in direction (1, 2)
@@ -347,7 +347,7 @@ fn main() {
                 00000000\
                 00000000\
             ", 2).unwrap();
-            let pieces_to_move = input_integer & mask;
+            let pieces_to_move = i & mask;
             let moved7 = pieces_to_move >> 17;
 
             // Moves in direction (2, 1)
@@ -361,10 +361,10 @@ fn main() {
                 11111100\
                 00000000\
             ", 2).unwrap();
-            let pieces_to_move = input_integer & mask;
+            let pieces_to_move = i & mask;
             let moved8 = pieces_to_move >> 10;
 
-            (input_integer | moved1 | moved2 | moved3 | moved4 | moved5 | moved6 | moved7 | moved8).count_zeros()
+            (i | moved1 | moved2 | moved3 | moved4 | moved5 | moved6 | moved7 | moved8).count_zeros()
         };
 
         let bitwise = bitwise_output(input_integer);
