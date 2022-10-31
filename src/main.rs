@@ -250,123 +250,127 @@ fn main() {
                 }
             }
         }
-        
-        // Moves in direction (2, -1)
-        let mask = u64::from_str_radix("\
-            00000000\
-            11111100\
-            11111100\
-            11111100\
-            11111100\
-            11111100\
-            11111100\
-            11111100\
-        ", 2).unwrap();
-        let pieces_to_move = input_integer & mask;
-        let moved1 = pieces_to_move << 6;
-        
-        // Moves in direction (1, -2)
-        let mask = u64::from_str_radix("\
-            00000000\
-            00000000\
-            11111110\
-            11111110\
-            11111110\
-            11111110\
-            11111110\
-            11111110\
-        ", 2).unwrap();
-        let pieces_to_move = input_integer & mask;
-        let moved2 = pieces_to_move << 15;
-        
-        // Moves in direction (-1, -2)
-        let mask = u64::from_str_radix("\
-            00000000\
-            00000000\
-            01111111\
-            01111111\
-            01111111\
-            01111111\
-            01111111\
-            01111111\
-        ", 2).unwrap();
-        let pieces_to_move = input_integer & mask;
-        let moved3 = pieces_to_move << 17;
-        
-        // Moves in direction (-2, -1)
-        let mask = u64::from_str_radix("\
-            00000000\
-            00111111\
-            00111111\
-            00111111\
-            00111111\
-            00111111\
-            00111111\
-            00111111\
-        ", 2).unwrap();
-        let pieces_to_move = input_integer & mask;
-        let moved4 = pieces_to_move << 10;
-        
-        // Moves in direction (-2, 1)
-        let mask = u64::from_str_radix("\
-            00111111\
-            00111111\
-            00111111\
-            00111111\
-            00111111\
-            00111111\
-            00111111\
-            00000000\
-        ", 2).unwrap();
-        let pieces_to_move = input_integer & mask;
-        let moved5 = pieces_to_move >> 6;
-        
-        // Moves in direction (-1, 2)
-        let mask = u64::from_str_radix("\
-            01111111\
-            01111111\
-            01111111\
-            01111111\
-            01111111\
-            01111111\
-            00000000\
-            00000000\
-        ", 2).unwrap();
-        let pieces_to_move = input_integer & mask;
-        let moved6 = pieces_to_move >> 15;
-        
-        // Moves in direction (1, 2)
-        let mask = u64::from_str_radix("\
-            11111110\
-            11111110\
-            11111110\
-            11111110\
-            11111110\
-            11111110\
-            00000000\
-            00000000\
-        ", 2).unwrap();
-        let pieces_to_move = input_integer & mask;
-        let moved7 = pieces_to_move >> 17;
-        
-        // Moves in direction (2, 1)
-        let mask = u64::from_str_radix("\
-            11111100\
-            11111100\
-            11111100\
-            11111100\
-            11111100\
-            11111100\
-            11111100\
-            00000000\
-        ", 2).unwrap();
-        let pieces_to_move = input_integer & mask;
-        let moved8 = pieces_to_move >> 10;
-        
-        let bitwise_output = (input_integer | moved1 | moved2 | moved3 | moved4 | moved5 | moved6 | moved7 | moved8).count_zeros();
+
+        let bitwise = bitwise_output(input_integer);
         let inverse_input_integer = u64::MAX - input_integer;
-        
-        assert!(bitwise_output == output, "True output: {}\nGolfed output: {}\n\n", output, bitwise_output);
-        println!("{input_integer} : {inverse_input_integer} : {bitwise_output}");
+
+        assert!(bitwise == output, "True output: {}\nGolfed output: {}\n\n", output, bitwise);
+        println!("{input_integer} : {inverse_input_integer} : {bitwise}");
     }
+}
+
+fn bitwise_output(input_integer: u64) -> u32 {
+    // Moves in direction (2, -1)
+    let mask = u64::from_str_radix("\
+        00000000\
+        11111100\
+        11111100\
+        11111100\
+        11111100\
+        11111100\
+        11111100\
+        11111100\
+    ", 2).unwrap();
+    let pieces_to_move = input_integer & mask;
+    let moved1 = pieces_to_move << 6;
+
+    // Moves in direction (1, -2)
+    let mask = u64::from_str_radix("\
+        00000000\
+        00000000\
+        11111110\
+        11111110\
+        11111110\
+        11111110\
+        11111110\
+        11111110\
+    ", 2).unwrap();
+    let pieces_to_move = input_integer & mask;
+    let moved2 = pieces_to_move << 15;
+
+    // Moves in direction (-1, -2)
+    let mask = u64::from_str_radix("\
+        00000000\
+        00000000\
+        01111111\
+        01111111\
+        01111111\
+        01111111\
+        01111111\
+        01111111\
+    ", 2).unwrap();
+    let pieces_to_move = input_integer & mask;
+    let moved3 = pieces_to_move << 17;
+
+    // Moves in direction (-2, -1)
+    let mask = u64::from_str_radix("\
+        00000000\
+        00111111\
+        00111111\
+        00111111\
+        00111111\
+        00111111\
+        00111111\
+        00111111\
+    ", 2).unwrap();
+    let pieces_to_move = input_integer & mask;
+    let moved4 = pieces_to_move << 10;
+
+    // Moves in direction (-2, 1)
+    let mask = u64::from_str_radix("\
+        00111111\
+        00111111\
+        00111111\
+        00111111\
+        00111111\
+        00111111\
+        00111111\
+        00000000\
+    ", 2).unwrap();
+    let pieces_to_move = input_integer & mask;
+    let moved5 = pieces_to_move >> 6;
+
+    // Moves in direction (-1, 2)
+    let mask = u64::from_str_radix("\
+        01111111\
+        01111111\
+        01111111\
+        01111111\
+        01111111\
+        01111111\
+        00000000\
+        00000000\
+    ", 2).unwrap();
+    let pieces_to_move = input_integer & mask;
+    let moved6 = pieces_to_move >> 15;
+
+    // Moves in direction (1, 2)
+    let mask = u64::from_str_radix("\
+        11111110\
+        11111110\
+        11111110\
+        11111110\
+        11111110\
+        11111110\
+        00000000\
+        00000000\
+    ", 2).unwrap();
+    let pieces_to_move = input_integer & mask;
+    let moved7 = pieces_to_move >> 17;
+
+    // Moves in direction (2, 1)
+    let mask = u64::from_str_radix("\
+        11111100\
+        11111100\
+        11111100\
+        11111100\
+        11111100\
+        11111100\
+        11111100\
+        00000000\
+    ", 2).unwrap();
+    let pieces_to_move = input_integer & mask;
+    let moved8 = pieces_to_move >> 10;
+
+    (input_integer | moved1 | moved2 | moved3 | moved4 | moved5 | moved6 | moved7 | moved8).count_zeros()
 }
