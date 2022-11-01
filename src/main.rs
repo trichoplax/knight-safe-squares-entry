@@ -242,7 +242,7 @@ fn main() {
 
         let bitwise_output =
 
-|i:u64|(i|(i&0xfcfcfcfcfcfcfc)<<6|(i&0xfefefefefefe)<<15|(i&0x7f7f7f7f7f7f)<<17|(i&0x3f3f3f3f3f3f3f)<<10|(i&0x3f3f3f3f3f3f3f00)>>6|(i&0x7f7f7f7f7f7f0000)>>15|(i&0xfefefefefefe0000)>>17|(i&0xfcfcfcfcfcfcfc00)>>10).count_zeros()
+|i:u64|{let(a,b,c,d)=(0xfcfcfcfcfcfcfcu64,0xfefefefefefeu64,0x7f7f7f7f7f7fu64,0x3f3f3f3f3f3f3fu64);(i|(i&a)<<6|(i&b)<<15|(i&c)<<17|(i&d)<<10|(i&d<<8)>>6|(i&c<<16)>>15|(i&b<<16)>>17|(i&a<<8)>>10).count_zeros()}
 
         ;
 
